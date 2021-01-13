@@ -1,23 +1,14 @@
-<html lang='pt-BR'>
-    <head>
-        <title>Meu primeiro blog</title>
-        <meta charset="utf-8">
-        <meta name="author" content="Matheus Soares Martins">
-        <meta name="description" content="Página inicial do meu blog de teste do Django.">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+{% extends 'blog/base.html' %}
 
-    <body>
-        <div>
-            <h1><a href="/">Meu primeiro blog</a></h1>
+{% block content%}
+    {% for post in posts %}
+        <div class="post">
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2><!--pk=post.pk significa que pegará o post_detail do post que tenha a chave primária (pk) igual ao post atual.-->
+            <p>{{ post.text|linebreaksbr }}</p><!-- O line breaks serve para converter quebras de linhas em parágrafos -->
+            <div class="date">
+                <p>published: {{ post.published_date }}</p>
+            </div>
         </div>
-
-        {% for post in posts %}
-           <div>
-                <h2><a href="">{{post.title}}</a></h2>
-                <p>{{post.text|linebreaksbr}}</p>
-                <p>Data de publicação: {{post.published_date}}</p>
-           </div>
-        {% endfor %}
-    </body>
-</html>
+    {% endfor %}
+{% endblock%}
+                
