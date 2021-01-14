@@ -16,6 +16,9 @@
     <body>
         <div class="page-header">
             <h1><a href="/">Meu primeiro blog</a></h1>
+            {% if  user.is_authenticated %} <!-- Faz com que a opção de criar novos posts estejam disponíveis apenas para usuários que estejam logados. -->
+                <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a><!-- A classe "glyphicon glyphicon-plus" é fornecida pelo tema (bootstrap) que estamos usando, e nos mostrará um sinal de mais. -->
+            {% endif %}
         </div>
 
         <div class="content container">

@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h2>Novo post</h2><!-- Título da página de criação de formulário. -->
+    <form method="POST" class="post-form">{% csrf_token %} <!-- {% csrf_token %}. É isso que torna o nosso formulário seguro. Se você esquecer esta parte, o Django vai reclamar quando você tentar salvar o formulário! -->
+        {{ form.as_p }} <!-- Serve para exibir o formulário que foi passado para essa página como variável pelo view.-->
+        <button type="submit" class="save btn btn-default">Salvar</button> <!-- Serve como o botão salvar para o nosso formulário que foi criado. -->
+    </form>
+{% endblock %}
